@@ -8,8 +8,8 @@
     }
 }
 
- function whispwpCodeFunction() {
-   var copyText = document.getElementById("whispCopyCodeInput");
+ function whispwpCodeFunction(x) {
+   var copyText = document.getElementById("whispCopyCodeInput"+x);
    copyText.select();
    document.execCommand("Copy");
    alert("Copy : " + copyText.value);

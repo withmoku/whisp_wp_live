@@ -30,3 +30,9 @@
     color:  #ffffff;
     border: solid 1px #828282;
 }
+
+.modal_flat_inner input,
+#tt-wheel .gg-modal__form__label input {
+    background: unset !important;
+    background-color: unset !important;
+}

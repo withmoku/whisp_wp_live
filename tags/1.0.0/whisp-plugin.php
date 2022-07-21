@@ -96,7 +96,7 @@ class WhispPlugin {
 
    function whisp_page_callback() {
     global $session;
-    echo '<h1>WHISP Custom Code </h1><button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModal" style="border: 1px solid #2271b1; font-weight: bold; color: #2271b1">
+    echo '<br /><h3>WHISP Admin</h3><button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#myModal" style="border: 1px solid #2271b1; font-weight: bold; color: #2271b1">
   Add New
 </button><br /><br />';
     echo '  <div class="modal fade" id="myModal" role="dialog">
@@ -105,8 +105,8 @@ class WhispPlugin {
         <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button><br />
-            <p class="modal-title">Add Custom Code</p>
+          <h5 class="modal-title" id="exampleModalLabel">Create Custom Code</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
   <form id="myForm" name="myform" action="' . esc_attr( admin_url('admin-post.php') ).'" method="POST" onsubmit="return validateForm()">
@@ -146,19 +146,20 @@ class WhispPlugin {
   </form><br /> <br />
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
     </div>';
 
-echo "<table class='table wpwhisptbl'>";
+echo "<table class='table table-dark table-striped wpwhisptbl'>";
 echo "<th>Product Identifier</th>";
 echo "<th>Whisp Type</th>";
 echo "<th>Source</th>";
 echo "<th>Campaign</th>";
 echo "<th>Other</th>";
-echo "<th>Copy and paste this code</th>";
+echo "<th>&nbsp;</th>";
+echo "<th>&nbsp;</th>";
 $args = array(
   'post_type' => 'wp_whisp',
 );
@@ -195,7 +196,7 @@ if ( $query->have_posts() ) {
 
       echo "<td><div class='whispwp-code-header'><input type='text' style='width: 85%;background-color: #00172f !important;color: #26a9e0;' value='";
       esc_attr(the_title());
-      echo "' id='whispCopyCodeInput'><button style='float: right;margin-top: 2px;' onclick='whispwpCodeFunction()'>Copy</button></div></td>";
+      echo "' id='whispCopyCodeInput".esc_attr(get_the_ID())."'><button style='float: right;margin-top: 2px;' onclick='whispwpCodeFunction(".esc_attr(get_the_ID()).")'>Copy</button></div></td>";
       echo "<td><button 
       onclick='whisp_delete(".esc_attr(get_the_ID()).")' class='btn btn-danger btn-sm'>
       Delete
@@ -206,8 +207,8 @@ if ( $query->have_posts() ) {
 
     }
      echo "</table>";
-     echo "<script>function whispwpCodeFunction() {
-   var copyText = document.getElementById('whispCopyCodeInput');
+     echo "<script>function whispwpCodeFunction(id) {
+   var copyText = document.getElementById('whispCopyCodeInput'+id);
    copyText.select();
    document.execCommand('Copy');
    alert('Copy : ' + copyText.value);
