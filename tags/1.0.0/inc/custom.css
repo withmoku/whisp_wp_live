@@ -1,0 +1,32 @@
+.wp-admin {
+    background-color: #f0f0f1 !important;
+}
+#button_wtf {
+    cursor: pointer;
+    float: left;
+    margin-top: -10px;
+    margin-right:  10px !important;
+}
+
+.entry-content  {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#whispCopyCodeInput {
+    width: 85%;
+    background-color: #00172f !important;
+    color: #26a9e0;
+}
+
+.whispwp-code-header button {
+    float: right;
+    margin-top: 2px;
+}
+
+.whispwp-code-header button:hover {
+    background:  #828282;
+    color:  #ffffff;
+    border: solid 1px #828282;
+}
